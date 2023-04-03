@@ -1,0 +1,15 @@
+<%- include('../includes/head.ejs') %>
+<link rel="stylesheet" href="../../style.css">
+</head>
+<body>
+    <%- include('../includes/navigation.ejs') %>
+    <div class="fromContainer">
+        <form class="label-form" method="POST" action="/admin/<% if(editing) { %>editproduct<% } else { %>productdata<% } %>">
+            <div class="product"><label for="title" >Add Product : <input id="title" type="text" value="<% if(editing) { %> <%= Prods.productName %> <% } %>"  name="title"/></label><br/></div>
+            <div class="product"><label for="description" >Add Desc : <input id="desc" type="text" value="<% if(editing) { %> <%= Prods.description %> <% } %>"  name="description"/></label><br/></div>
+            <div class="product"><label for="productPrice" >Add Price : <input id="price" type="number" step="0.01" value="<% if(editing) { %><%= Prods.productPrice %><% } %>"  name="productPrice"/></label><br/></div>
+            <button class="button" type="submit"><% if(editing) { %> Update Product <% } else { %> Add Product <% } %> </button>
+            <% if(editing) { %><input type="hidden" value="<%=Prods._id%>" name="productId"/><% } %>
+        </form>
+    </div>
+<%- include('../includes/end.ejs') %>

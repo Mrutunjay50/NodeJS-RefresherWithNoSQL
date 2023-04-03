@@ -1,0 +1,26 @@
+<%- include('../includes/head.ejs') %>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+    <%- include('../includes/navigation.ejs') %>
+    <% if(Prods !== undefined) { %>
+        <div class="header">
+            <p class="headTitle"><%=Prods.productName %> Detail</p>
+        </div>
+        <div class="product-detail">
+            <div class="product-dcont">
+                <span class="product-Title"><%=Prods.productName %></span>
+                <hr>
+                <img src="https://cdn.stocksnap.io/img-thumbs/960w/yellow-flower_MN1CG2DVPV.jpg" alt="img" />
+                <p><%= Prods.description %></p>
+                <span class="Price">The Price for the book is $<%=Prods.productPrice %></span>
+                <span class="Date">Imported On <%=Prods.currentDate %></span>
+            </div>
+            <br/>
+            <form action="/cart" method="POST">
+                <button class="cartBtn1" >Add To Cart</button>
+                <input type="hidden" value="<%=Prods._id%>" name="productId"/>
+            </form>
+        </div>
+    <% } %>
+<%- include('../includes/end.ejs') %>

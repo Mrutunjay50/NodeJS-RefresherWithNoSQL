@@ -1,0 +1,32 @@
+<%- include('../includes/head.ejs') %>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+    <%- include('../includes/navigation.ejs') %>
+
+    <div class="header">
+        <p class="headTitle">All Products</p>
+    </div>
+    <div class="product-list">
+        <% if(Prods.length > 0) { %>
+            <% for (Products in Prods) { %>
+                <div class="product-cont">
+                    <img src="https://cdn.stocksnap.io/img-thumbs/960w/yellow-flower_MN1CG2DVPV.jpg" alt="img" />
+                    <span class="product-title"><%= Prods[Products].productName %></span>
+                    <p><%= Prods[Products].description %></p>
+                    <span class="price">$<%= Prods[Products].productPrice %></span>
+                    <span class="date"><%= Prods[Products].currentDate %></span>
+                    
+                    <a href="/product-list/<%=Prods[Products].id %>"><button class="detailBtn">Details</button></a>
+                    <form action="/cart" method="POST">
+                        <button class="cartBtn" >Add To Cart</button>
+                        <input type="hidden" value="<%=Prods[Products]._id%>" name="productId"/>
+                    </form>
+                    
+                </div>
+            <% } %>
+        <% } else { %>
+            <h1>No Products</h1>
+        <% }%>
+    </div>
+<%- include('../includes/end.ejs') %>
